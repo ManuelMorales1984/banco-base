@@ -1,0 +1,56 @@
+server:
+  port: 9750
+  application:
+    name: bancobase
+    version: ${DEPLOY_VERSION:1}
+  servlet:
+    context-path: /base/services
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    binders:
+      enabled: true
+    db:
+      enabled: false
+    redis:
+      enabled: false
+  server:
+    port: 8888
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:develop}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    hikari:
+      auto-commit: false
+      username: ${USERNAME:root}
+      password: ${PASSWORD:Testingert}
+      pool-name: poool1
+      maximum-pool-size: 20
+    connection-timeout: 300000
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:33060/demo?useSSL=false}
+  kafka:
+    consumer:
+      bootstrap-servers: PLAINTEXT://redpanda:9092
+    producer:
+      bootstrap-servers: PLAINTEXT://redpanda:9092
+
+logging:
+  level:
+    root: INFO
+    com:
+      zaxxer:
+        hikari:
+          HikariConfig: DEBUG

@@ -1,0 +1,3 @@
+FROM mcr.microsoft.com/java/jre:11-zulu-centos
+copyFile "base-0.0.1-SNAPSHOT", "/opt/base.jar"
+ENTRYPOINT ["java","-jar","/base.jar"]
