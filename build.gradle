@@ -1,8 +1,6 @@
 buildscript {
 	ext {
 		springBootVersion = '2.3.12.RELEASE'
-		dockerRegistryUsername = 'mxpip'
-		dockerRegistryHost = 'mxpip.azurecr.io'
 	}
 }
 
